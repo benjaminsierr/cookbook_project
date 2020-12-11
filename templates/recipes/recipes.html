@@ -73,19 +73,23 @@
                                     <div class = 'recipe-content'>
                                         <div id="description">
                                             <h3>Description</h3>
-                                            <p>{{recipe.recipe_description}}</p>
+                                            <p style   ='white-space: pre-wrap;'>{{recipe.recipe_description}}</p>
                                         </div>
                                         <div class = 'recipe-ingredients'>
                                             <h3  class = 'recipe-header'>Ingredients</h3>
-                                            {% for ingredient in ingredients %}
-                                            {% if ingredient.recipe == recipe %}
-                                            <p>{{ingredient}}</p>
+                                            {% if ingredients%}
+                                                {% for ingredient in ingredients %}
+                                                {% if ingredient.recipe == recipe %}
+                                                <p>{{ingredient}}</p>
+                                                {% endif %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <p><i>No ingredients to display<i/></p>
                                             {% endif %}
-                                            {% endfor %}
                                         </div>
                                         <div>
                                             <h3 class = 'recipe-header'>Recipe Steps</h3>
-                                            <p>{{recipe.recipe_steps}}</P>
+                                            <p style   ='white-space: pre-wrap;'>{{recipe.recipe_steps}}</P>
                                         </div>
                                     </div>
                                     <!-- Portfolio Modal - Text-->

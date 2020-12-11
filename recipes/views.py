@@ -21,12 +21,15 @@ def addRecipe(request):
     recipe_description = request.POST.get('recipeDescription')
     recipe_steps = request.POST.get('recipeSteps')
     recipe_type = request.POST.get('recipeType')
-    photo = request.FILES['photo']
+    try:
+        photo = request.FILES['photo']
+    except:
+        photo = 'photos/404.jpg'
+        
     rt = RecipeType.objects.get(recipe_type_description = recipe_type)
 
     recipe = Recipe(recipe_name = recipe_title, recipe_description = recipe_description, recipe_steps = recipe_steps, recipe_type = rt,photo=photo)
     #recipe.photo.
-    print(request.FILES['photo'])
     recipe.save()
     print(recipe.id)
     return redirect('ingredients', recipe.id)

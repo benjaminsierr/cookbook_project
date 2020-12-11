@@ -12,10 +12,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'uwss96!+p$+pt%*jcfa8$_si1dz3a^%pow(lj#1jy^*n#-bv$-'
 #heroku config:set SECRET_KEY="uwss96!+p$+pt%*jcfa8$_si1dz3a^%pow(lj#1jy^*n#-bv$-" --app saltedhashes-cookbook
 
-SECRET_KEY = os.environ.get('SECRET_KEY')
+#SECRET_KEY = os.environ.get('SECRET_KEY')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 
