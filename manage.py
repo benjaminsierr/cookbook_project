@@ -3,6 +3,21 @@
 import os
 import sys
 
+def populateTypes():
+    from recipes.models import RecipeType
+    Breakfast = RecipeType(type='Breakfast')
+    Breakfast.save()
+    Lunch = RecipeType(type='Lunch')
+    Lunch.save()
+    Dinner = RecipeType(type='Dinner')
+    Dinner.save()
+    Snack = RecipeType(type='Snack')
+    Snack.save()
+    Dessert = RecipeType(type='Dessert')
+    Dessert.save()
+    Beverage = RecipeType(type='Beverage')
+    Beverage.save()
+
 
 def main():
     """Run administrative tasks."""
@@ -20,3 +35,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+

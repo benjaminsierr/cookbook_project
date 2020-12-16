@@ -8,7 +8,7 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <!-- Recipe Heading-->
-                <h2 class="page-section-heading text-center text-secondary mb-0">Results for {{search}}</h2>
+                <h2 class="page-section-heading text-center text-secondary mb-0">{{user}}'s Recipes</h2>
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>
@@ -33,7 +33,12 @@
                             </div>
                             <br>
                             <h5>{{recipe.recipe_name}}</h5>
-                            <p>by <i>{{recipe.user}}</i></p>
+                            </div>
+                            
+                            <div style='display:flex;'>
+                                <form method='POST' action="{% url 'edit' recipeid=recipe.id %}">{% csrf_token %}<input hidden name='id' value = {{recipe.id}}><button class='btn btn-primary'>Edit</button></form>
+                                <p style='color:#f8f9fa'>--</p>
+                                <form method='POST' action="{% url 'deleteRecipe' cat=recipe.recipe_type.recipe_type_description %}">{% csrf_token %}<input hidden name='id' value = {{recipe.id}}><button class='btn btn-primary'>Delete</button></form>
                             </div>
                             <br>
                         </div>
@@ -69,19 +74,23 @@
                                     <div class = 'recipe-content'>
                                         <div id="description">
                                             <h3>Description</h3>
-                                            <p>{{recipe.recipe_description}}</p>
+                                            <p style   ='white-space: pre-wrap;'>{{recipe.recipe_description}}</p>
                                         </div>
                                         <div class = 'recipe-ingredients'>
                                             <h3  class = 'recipe-header'>Ingredients</h3>
-                                            {% for ingredient in ingredients %}
-                                            {% if ingredient.recipe == recipe %}
-                                            <p>{{ingredient}}</p>
+                                            {% if ingredients%}
+                                                {% for ingredient in ingredients %}
+                                                {% if ingredient.recipe == recipe %}
+                                                <p>{{ingredient}}</p>
+                                                {% endif %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <p><i>No ingredients to display<i/></p>
                                             {% endif %}
-                                            {% endfor %}
                                         </div>
                                         <div>
                                             <h3 class = 'recipe-header'>Recipe Steps</h3>
-                                            <p>{{recipe.recipe_steps}}</P>
+                                            <p style   ='white-space: pre-wrap;'>{{recipe.recipe_steps}}</P>
                                         </div>
                                     </div>
                                     <!-- Portfolio Modal - Text-->

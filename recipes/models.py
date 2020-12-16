@@ -28,6 +28,7 @@ class Recipe(models.Model):
     recipe_steps = models.TextField()
     recipe_type = models.ForeignKey(RecipeType, on_delete=DO_NOTHING)
     photo = models.ImageField(upload_to = 'photos', blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=CASCADE, blank=True, null=True)
 
     def __str__(self):
         return (self.recipe_name)

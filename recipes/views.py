@@ -28,7 +28,7 @@ def addRecipe(request):
         
     rt = RecipeType.objects.get(recipe_type_description = recipe_type)
 
-    recipe = Recipe(recipe_name = recipe_title, recipe_description = recipe_description, recipe_steps = recipe_steps, recipe_type = rt,photo=photo)
+    recipe = Recipe(recipe_name = recipe_title, recipe_description = recipe_description, recipe_steps = recipe_steps, recipe_type = rt,photo=photo, user = request)
     #recipe.photo.
     recipe.save()
     print(recipe.id)
@@ -119,6 +119,21 @@ def recipesPageView(request,cat):
     }
     return render(request, 'recipes/recipes.html', context)
 
+def myRecipes(request):
+    recipes = []
+    for recipe in Recipe.objects.all():
+        print(recipe.user,'==========================',request.user)
+        if recipe.user == request.user :
+            recipes.append(recipe)
+    
+    ingredients = []
+    for ing in RecipeIngredient.objects.all():
+        ingredients.append(ing)
+    context = {
+        'recipes' : recipes,
+        'ingredients' : ingredients,
+    }
+    return render(request, 'recipes/my_recipes.html', context)
 #each recipe can be deleted from the recipes template
 #once the recipe is deleted the user is redirected to the same template under the same category
 def deleteRecipe(request, cat):
