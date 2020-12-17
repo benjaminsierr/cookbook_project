@@ -28,7 +28,7 @@ def addRecipe(request):
         
     rt = RecipeType.objects.get(recipe_type_description = recipe_type)
 
-    recipe = Recipe(recipe_name = recipe_title, recipe_description = recipe_description, recipe_steps = recipe_steps, recipe_type = rt,photo=photo, user = request)
+    recipe = Recipe(recipe_name = recipe_title, recipe_description = recipe_description, recipe_steps = recipe_steps, recipe_type = rt,photo=photo, user = request.user)
     #recipe.photo.
     recipe.save()
     print(recipe.id)
