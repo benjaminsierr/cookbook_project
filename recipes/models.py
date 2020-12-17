@@ -1,20 +1,20 @@
 from django.db import models
 from django.db.models.deletion import CASCADE, DO_NOTHING
 from django.db.models.fields.related import ForeignKey
-
+from django.contrib.auth.models import User
 #Create your models here.
 
 #We created the user model before security was cut. We're just gonna leave it here so you know we have what it takes.
-class User(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    skill_level = models.CharField(max_length=30)
-    email = models.EmailField(max_length=50)
-    password = models.CharField(max_length=20)
-    photo = models.ImageField(upload_to = 'photos', blank=True)
+# class User(models.Model):
+#     first_name = models.CharField(max_length=30)
+#     last_name = models.CharField(max_length=30)
+#     skill_level = models.CharField(max_length=30)
+#     email = models.EmailField(max_length=50)
+#     password = models.CharField(max_length=20)
+#     photo = models.ImageField(upload_to = 'photos', blank=True)
 
-    def __str__(self):
-        return (self.first_name + ' ' + self.last_name)
+#     def __str__(self):
+#         return (self.first_name + ' ' + self.last_name)
 
 class RecipeType(models.Model):
     recipe_type_description = models.CharField(max_length=50)
@@ -28,6 +28,7 @@ class Recipe(models.Model):
     recipe_steps = models.TextField()
     recipe_type = models.ForeignKey(RecipeType, on_delete=DO_NOTHING)
     photo = models.ImageField(upload_to = 'photos', blank=True, null=True)
+    user = models.ForeignKey(User, on_delete=CASCADE, blank=True, null=True)
 
     def __str__(self):
         return (self.recipe_name)

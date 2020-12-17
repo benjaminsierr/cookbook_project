@@ -17,7 +17,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 #SECRET_KEY = os.environ.get('SECRET_KEY')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-
+SECRET_KEY = "uwss96!+p$+pt%*jcfa8$_si1dz3a^%pow(lj#1jy^*n#-bv$-"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -36,7 +36,10 @@ INSTALLED_APPS = [
     'recipes.apps.RecipesConfig',
     'login.apps.LoginConfig',
     'whitenoise.runserver_nostatic',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

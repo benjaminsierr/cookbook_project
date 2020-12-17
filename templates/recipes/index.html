@@ -28,10 +28,16 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
+                        {% if user.is_authenticated %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'create'%}">Create Recipe</a></li>
+                        {% endif %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#about">About</a></li>
+                        {% if user.is_authenticated %}
+                        <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'logout' %}">Logout</a></li>
+                        {% else %}
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'login' %}">Login</a></li>
                         <li class="nav-item mx-0 mx-lg-1"><a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="{% url 'signup' %}">Sign up</a></li>
+                        {% endif %}
                         <li class="nav-item mx-0 mx-lg-1" style='flex-direction:row'>
                             <form method = 'GET' action = "{% url 'search' %}">
                                 <input placeholder='search here' name = 'search'>
@@ -48,7 +54,11 @@
         <section class="page-section portfolio" id="portfolio">
             <div class="container">
                 <!-- Portfolio Section Heading-->
-                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Explore our Recipes</h2>
+                {% if user.is_authenticated %}
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Welcome {{user}}</h2>
+                {% else %}
+                <h2 class="page-section-heading text-center text-uppercase text-secondary mb-0">Explore our recipes</h2>
+                {% endif %}
                 <!-- Icon Divider-->
                 <div class="divider-custom">
                     <div class="divider-custom-line"></div>

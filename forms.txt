@@ -24,3 +24,5 @@ Edit Recipe:
     - Recipe Steps 
     - Recipe Type 
     - Photo
+
+python3 manage.py loaddata initial_role_data.json 
