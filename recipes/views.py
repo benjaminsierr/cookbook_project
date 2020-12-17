@@ -95,7 +95,6 @@ def addIngredient(request, recipe):
 #on the ingredients template there are buttons for each of the existing ingredients so they can be deleted
 #this view will redirect to ingredients page view
 def deleteIngredient(request, recipe):
-    print('----------',request.POST.get('ingredient'))
     RecipeIngredient.objects.get(id = request.POST.get('ingredient')).delete()
 
     return redirect('ingredients', recipe)
@@ -138,6 +137,9 @@ def myRecipes(request):
 #once the recipe is deleted the user is redirected to the same template under the same category
 def deleteRecipe(request, cat):
     Recipe.objects.get(id = request.POST.get('id')).delete()
+
+    if 'myrecipes' in request.META.get('HTTP_REFERER'):
+        return redirect('myRecipes')
     return redirect('recipes', cat)
 
 #this is the search view
